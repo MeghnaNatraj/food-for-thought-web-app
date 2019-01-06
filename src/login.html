@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Food for thought</title>
+
+    <link rel="stylesheet" href="css/styleLogin.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+    body{
+    font-family: Verdana, Geneva, sans-serif;
+  }
+
+
+.validation{
+  color: white;
+  position: relative;
+  top: -50px;
+  left: 200px;
+}
+    </style>
+</head>
+
+<body>
+<h1 class="heading">Food For Thought</h1>
+    <div class="container">
+
+      <div id="login">
+
+        <form method="get" action="profile.html">
+
+          <fieldset class="clearfix">
+
+            <p><span class="fontawesome-user"></span><input type="text" placeholder="Username" id="username" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <div id="usernameSpan" class="validation"></div>
+            <p><span class="fontawesome-lock"></span><input type="password"  placeholder="Password" id="password" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
+            <div id="passwordSpan" class="validation"></div>
+            <p><input type="submit" value="Sign In"></p>
+
+          </fieldset>
+
+        </form>
+
+        <p>        Not a member? <a href="signUp.html">Sign up now</a><span class="fontawesome-arrow-right"></span></p>
+
+      </div> <!-- end login -->
+
+    </div>
+
+</body>
+
+</html>

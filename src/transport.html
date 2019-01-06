@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Transport</title>
+            <link rel="stylesheet" href="css/styleLogin.css">
+
+    <style>
+
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+
+       body{
+        background: #2c3338;
+  color: #606468;
+  font: 87.5%/1.5em 'Open Sans', sans-serif;
+  margin: 0;
+    }
+        .heading {
+  color: white;
+  position: relative;
+  margin-top: 50px;
+  margin-left: 100px;
+
+  font-size: 70px;
+    }
+    #map_wrapper {
+    height: 400px;
+}
+.message{
+    position: relative;
+  left: 200px;
+  font-size: 18px;
+  color: white;
+  margin-top: 50px;
+}
+
+#map-canvas {
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    left:350px;
+    top:180px;
+}
+.tableClass{
+  position: relative;
+  top: 200px;
+  left: 100px;
+  color: white;
+  line-height: 2.5;
+}
+.back{
+border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #ea4c88;
+  color: #eee;
+  font-weight: bold;
+  margin-bottom: 2em;
+  text-transform: uppercase;
+  width: 280px;
+  padding: 10px;
+  position: relative;
+  top: 20px;
+  left: 800px;
+    right: 80px;
+}
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script>
+// This example creates a 2-pixel-wide red polyline showing
+// the path of William Kingsford Smith's first trans-Pacific flight between
+// Oakland, CA, and Brisbane, Australia.
+
+function initialize() {
+  var mapOptions = {
+    zoom: 11,
+    center: new google.maps.LatLng(12.9667, 797.5),
+    mapTypeId: google.maps.MapTypeId.TERRAIN
+  };
+
+      var map;
+    var bounds = new google.maps.LatLngBounds();
+
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+    var markers = [
+        ['Sam Paul,Malleswaram', 13.000, 797.49111],
+        ['Vijay, Rajajinagar', 12.9267, 797.590],
+        ['Mohan, Shivaji Nagar', 12.9897, 797.590]
+           ];
+    
+    // Info Window Content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3>Sam Paul</h3>' +
+        '<p>Food for 50 people at Raghavendra Nagar.</p>' + '<button class="submitBut">' + 'Request'+ '</button>'+ '</div>'],
+        ['<div class="info_content">' + '<h3>Rahul</h3>' + '<p>Food for 100 people at Jayanagar.</p>' + '<button class="submitBut">' + 'Request'+ '</button>' +'</div>'] ,
+        ['<div class="info_content">' + '<h3>Mohan</h3>' + '<p>Food for 30 people at Shivaji Nagar.</p>' + '<button class="submitBut">' + 'Request'+ '</button>' +'</div>'] 
+    ];
+        var infoWindow = new google.maps.InfoWindow(), marker, i;
+  
+
+  var flightPlanCoordinates = [
+    new google.maps.LatLng(13.000, 797.49111),
+    new google.maps.LatLng(12.9267, 797.590),
+
+  ];
+  var flightPath = new google.maps.Polyline({
+    path: flightPlanCoordinates,
+    geodesic: true,
+    strokeColor: '#00CC33',
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+   flightPath.setMap(map);
+
+ 
+
+   for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+           if(i == markers.length-1)
+        {
+           marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0],
+            icon : 'images/HomeMarker.png'
+ 
+        }
+
+        );
+        }
+        else if(i == markers.length-2)
+       {
+           marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0],
+            icon : 'images/FoodMarker_blue.png'
+ 
+        }
+
+        );
+        }
+        else
+        {
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0],
+             icon : 'images/FoodMarker_red.png'
+
+        }
+
+        );
+      }
+
+ 
+      
+
+        // Automatically center the map fitting all markers on the screen
+    }
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+  </head>
+  <body>
+  <h1 class="heading">Transport Food</h1>
+<p class="message">The below map shows the most efficient path between the location of the people sharing and requesting for food.</p>
+ <a href="profile.html" class="back">Confirm</a>
+ <a href="profile.html" class="back">Back</a>
+<div id="map_wrapper">
+    <div id="map_canvas" class="mapping"></div>
+</div>
+    <div id="map-canvas" ></div>
+    <table border="2" class="tableClass" BORDERCOLOR="00FF00">
+    <tr>
+    <th>
+    Organisation
+ </th>
+     <th>
+    Phone number, email id
+ </th>
+    <th>
+    Address of the organisation
+</th>
+    </tr>
+    <tr>
+      <td>Samarpan</td>
+      <td>Phone: 9880194757 Email: bangalore@samarpanfoundation.org</td>
+      <td>Postal address: 41/219, 3rd A Main road, Kalyani Nagar.</td>
+    </tr>
+      <tr>
+      <td>Manav Charities</td>
+      <td>Phone: 080-40966191 / 28386828 Email: info@manavcharities.org.</td>
+      <td>Postal Address: 66, 14th Main, Kammagondanhalli</td>
+    </tr> 
+     <tr>
+      <td>Mark caterers</td>
+      <td>Phone: 080 25480145, +91 74110 09617, 95900 09617 Email: info@markcaterers.com </td>
+      <td>Old No 2; New No. 567 Ist Main, Ground Floor, Masjid Road, Khushal Nagar K G Halli.</td>
+    </tr>
+      <tr>
+      <td>Vidyaranya</td>
+      <td>Phone: +91 080 22862622 Email: info@vidyaranya.org</td>
+      <td>Vidyaranya Royal Park Apartments.</td>
+    </tr>  
+    <tr>
+      <td>Shiva Kumar</td>
+      <td>Phone: 9844358514</td>
+      <td>Rajajinagar</td>
+    </tr> 
+    </table>
+  </body>
+</html>

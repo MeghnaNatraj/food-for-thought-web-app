@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Post a Request</title>
+
+    <link rel="stylesheet" href="css/styleLogin.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+      .heading{
+       color: white;
+       margin-left: 100px;
+}
+.validation{
+  color: white;
+  position: relative;
+  top: -50px;
+  left: 300px;
+}
+.back{
+border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #ea4c88;
+  color: #eee;
+  font-weight: bold;
+  margin-bottom: 2em;
+  text-transform: uppercase;
+  width: 280px;
+  padding: 10px;
+  position: relative;
+  top: 20px;
+}
+  </style>
+</head>
+
+<body>
+<h1 class="heading">Post a Request</h1>
+    <div class="container">
+
+      <div id="login">
+
+        <form method="get" action="post_confirmation.html" onsubmit="submitFunction()">
+
+          <fieldset class="clearfix">
+
+            <p><span class="fontawesome-user"></span><input type="text" placeholder="Location"required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <div class="validation"></div>
+            <p><span class="fontawesome-lock"></span><input type="text"  placeholder="No of people" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
+             <p><span class="fontawesome-lock"></span><input type="text"  placeholder="Time till food lasts" required></p> <!-- JS because of IE support; better: placeholder="Password" --> <p><span class="fontawesome-lock"></span><input type="text"  placeholder="Notes"></p> <!-- JS because of IE support; better: placeholder="Password" -->
+            <div id="passwordSpan" class="validation"></div>
+            <p><input type="submit" value="Submit"></p>
+          </fieldset>
+
+        </form>
+        <p id="confirmSubmission"></p>
+      </div> <!-- end login -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Request
+       
+    </title>
+     <link rel="stylesheet" href="css/styleLogin.css">
+    <style type="text/css">
+    body{
+        background: #2c3338;
+  color: #606468;
+  font: 87.5%/1.5em 'Open Sans', sans-serif;
+  margin: 0;
+    }
+        .heading {
+  color: white;
+  position: relative;
+  margin-top: 70px;
+  margin-left: 100px;
+
+  font-size: 70px;
+    }
+    
+    p{
+      margin-top: 10px;
+            margin-bottom: 10px;
+
+    }
+.message{
+    position: relative;
+ margin-left: 150px;
+  font-size: 18px;
+  color: white;
+}
+
+#map_canvas {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    left:425px;
+    top:-10px;
+}
+.submitBut{
+  background-color: gray;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.back{
+border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  background-color: #ea4c88;
+  color: #eee;
+  font-weight: bold;
+  margin-bottom: 2em;
+  text-transform: uppercase;
+  width: 280px;
+  padding: 10px;
+  position: relative;
+  top: 10px;
+  left: 1000px;
+}
+    </style>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript">
+jQuery(function($) {
+    // Asynchronously Load the map API 
+    var script = document.createElement('script');
+    script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+    document.body.appendChild(script);
+});
+
+function initialize() {
+    var map;
+    var bounds = new google.maps.LatLngBounds();
+    var mapOptions = {
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    };
+                    
+    // Display a map on the page
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+        
+    // Multiple Markers
+      var markers = [
+        ['Sam Paul,Malleswaram', 13.000, 797.49111],
+        ['Vijay, Rajajinagar', 12.9267, 797.590],
+        ['Mohan, Shivaji Nagar', 12.9897, 797.590]
+           ];
+    
+    // Info Window Content
+    var infoWindowContent = [
+        ['<div class="info_content">' +
+        '<h3>Sam Paul</h3>' +
+        '<p>Food for 50 people at Raghavendra Nagar.</p>' + '<button class="submitBut">' + 'Request'+ '</button>'+ '</div>'],
+        ['<div class="info_content">' + '<h3>Rahul</h3>' + '<p>Food for 100 people at Jayanagar.</p>' + '<button class="submitBut">' + 'Request'+ '</button>' +'</div>'] ,
+        ['<div class="info_content">' + '<h3>Mohan</h3>' + '<p>Food for 30 people at Shivaji Nagar.</p>' + '<button class="submitBut">' + 'Request'+ '</button>' +'</div>'] 
+    ];
+        
+    // Display multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i;
+    
+    // Loop through our array of markers & place each one on the map  
+    for( i = 0; i < markers.length; i++ ) {
+        var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+        bounds.extend(position);
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: markers[i][0],
+            icon : 'images/FoodMarker_red.png'
+
+        });
+        
+        // Allow each marker to have an info window    
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infoWindow.setContent(infoWindowContent[i][0]);
+                infoWindow.open(map, marker);
+            }
+        })(marker, i));
+
+        // Automatically center the map fitting all markers on the screen
+        map.fitBounds(bounds);
+    }
+
+    // Override our map zoom level once our fitBounds function runs (Make sure it only runs once)
+    var boundsListener = google.maps.event.addListener((map), 'bounds_changed', function(event) {
+        this.setZoom(11);
+        google.maps.event.removeListener(boundsListener);
+    });
+    
+}
+</script>
+</head>
+<body>
+<h1 class="heading">Request For Food</h1>
+<p class="message">Click the below map markers to select location and send request. Message will automatically be sent to the concerned party.</p>
+        <p class="message">   No Shares? Want more options? <a href="post_request.html">Post a request now </a><span class="fontawesome-arrow-right"></span></p>
+
+ <a href="profile.html" class="back">Back</a>
+<div id="map_wrapper">
+    <div id="map_canvas" class="mapping"></div>
+</div>
+</body>
+</html>
